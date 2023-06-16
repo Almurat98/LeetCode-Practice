@@ -1,7 +1,10 @@
 package Practice;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Assignment {
@@ -11,6 +14,8 @@ public class Assignment {
         String animal = "cat";
         String dish = "caramel shit";
         System.out.println(checkIfDishMatchName(animal,dish));
+
+        System.out.println(findFirstUniqueVowel(animal));
 
     }
 
@@ -24,8 +29,8 @@ public class Assignment {
     //letters. Beast and dish may contain hyphens and spaces, but these will not appear at the
     //beginning or end of the string. They will not contain numerals.
     public static boolean checkIfDishMatchName(String name,String dish){
-        name = name.replace("-", "").replace(" ", "");
-        dish = dish.replace("-", "").replace(" ", "");
+//        name = name.replace("-", "").replace(" ", "");
+//        dish = dish.replace("-", "").replace(" ", "");
 
         // Check if the dish starts and ends with the same letters as the animal's name
 
@@ -47,19 +52,18 @@ public class Assignment {
 
         public static int findFirstUniqueVowel(String str){
 
-        char[] vowels ={'a','e','i','o','u'};
+        int[] vowelCount = new int[5];
+        String vowels="aeiou";
+            IntStream.range(0, str.length())
+                    .filter(i -> vowels.contains(String.valueOf(str.charAt(i))))
+                    .forEach(i -> vowelCount[vowels.indexOf(str.charAt(i))]++);
 
-        for (int i =0;i<str.length();i++){
+        int indexOfUniqueVowel =IntStream.range(0,str.length()).filter(i -> vowels.contains(String.valueOf(str.charAt(i)))&& vowelCount[vowels.indexOf(str.charAt(i))] == 1)
+                .findFirst().orElse(-1);
 
-        }
+        return indexOfUniqueVowel;
 
-
-
-
-
-
-
-        }
+    }
 
 
 
