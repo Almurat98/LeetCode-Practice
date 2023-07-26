@@ -1,4 +1,4 @@
-package Practice;
+package week2;
 
 import java.util.stream.Stream;
 
