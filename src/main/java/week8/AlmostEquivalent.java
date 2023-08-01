@@ -26,16 +26,19 @@ public class AlmostEquivalent {
 
     //loop through string, put char as key, and number of appearance as value in a map
     public static void main(String[] args) {
-        String [] s = new String[]{"acccc","bbb"};
-        String [] t = new String[]{"aaccb","aaa"};
+        String [] s = new String[]{"acccc","bbb","abb"};
+        String [] t = new String[]{"aaccb","aaa","ac"};
 
-        System.out.println(Arrays.toString(almostEqual(s, t)));
+       // System.out.println(Arrays.toString(almostEqual(s, t)));
 
     }
 
 
-    public static String[] almostEqual(String[]sr1, String[]sr2){
-        String [] result = new String[2];
+    public  String[] almostEqual(String[]sr1, String[]sr2){
+        if (sr1.length!=sr2.length||sr1.length==0){
+            throw new IllegalArgumentException("Arrays should be same length");
+        }
+        String [] result = new String[sr1.length];
         for (int i = 0; i < sr1.length; i++) {
             String str1 = sr1[i];
             String str2 = sr2[i];
@@ -50,7 +53,6 @@ public class AlmostEquivalent {
                 int countOfM1 = 0;
                 int countOfM2 = 0;
                 if (!map1.containsKey(c)) {
-                    countOfM1 = 0;
                     countOfM2 = map2.get(c);
                     if (Math.abs(countOfM1 - countOfM2) > 3) {
                         isAlmostEqual = false;
@@ -59,7 +61,6 @@ public class AlmostEquivalent {
                 }
                 if (!map2.containsKey(c)) {
                     countOfM1 = map1.get(c);
-                    countOfM2 = 0;
                     if (Math.abs(countOfM1 - countOfM2) > 3) {
                         isAlmostEqual = false;
                         break;
@@ -83,7 +84,7 @@ public class AlmostEquivalent {
         return result;
     }
 
-    public static Map<Character,Integer> countCharacters(String str) {
+    private Map<Character,Integer> countCharacters(String str) {
         Map<Character, Integer> map = new HashMap<>();
         for (int j = 0; j < str.length(); j++) {
             if (map.containsKey(str.charAt(j))) {
