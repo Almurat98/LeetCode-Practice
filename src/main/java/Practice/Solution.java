@@ -1,8 +1,7 @@
 package Practice;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -38,22 +37,55 @@ public class Solution {
         List<List<Integer>> arr = new ArrayList<>();
 
         List<Integer>list1= new ArrayList<>();
-        list1.add(11);
+        list1.add(3);
         list1.add(2);
-        list1.add(4);
-        List<Integer>list2= new ArrayList<>();
-        list2.add(4);
-        list2.add(5);
-        list2.add(6);
-        List<Integer>list3= new ArrayList<>();
-        list3.add(10);
-        list3.add(8);
-        list3.add(-12);
+        list1.add(1);
+                list1.add(3);
+        //list1.add(5);
+//        List<Integer>list2= new ArrayList<>();
 
-        arr.add(list1);
-        arr.add(list2);
-        arr.add(list3);
+//        list2.add(6);
+//        List<Integer>list3= new ArrayList<>();
+//        list3.add(10);
+//        list3.add(8);
+//        list3.add(-12);
+//
+//        arr.add(list1);
+//        arr.add(list2);
+//        arr.add(list3);
 
-        System.out.println(Result.diagonalDifference(arr));
+       // miniMaxSum(list1);
+       // System.out.println(Result.diagonalDifference(arr));
+        System.out.println(birthdayCakeCandles(list1));
+    }
+
+
+    public static void miniMaxSum(List<Integer> arr) {
+        // Write your code here
+       Long min=0l;
+        Long max=0l;
+        Collections.sort(arr);
+
+        for (int i = 0; i < arr.size()-1; i++) {
+            min+=arr.get(i);
+        }
+        for (int i = 1; i <arr.size() ; i++) {
+            max+=arr.get(i);
+        }
+        System.out.println(min+" "+max);
+    }
+    public static int birthdayCakeCandles(List<Integer> candles) {
+        // Write your code here
+        Queue<Integer>tallCandles= new ArrayDeque<>();
+        tallCandles.add(candles.get(0));
+        for (int i = 1; i <candles.size(); i++) {
+            if(candles.get(i)>candles.get(i-1)&&candles.get(i)>tallCandles.peek()){
+                tallCandles.poll();
+                tallCandles.add(candles.get(i));
+            }else if(Objects.equals(candles.get(i), tallCandles.peek())){
+                tallCandles.add(candles.get(i));
+            }
+        }
+        return tallCandles.size();
     }
 }
