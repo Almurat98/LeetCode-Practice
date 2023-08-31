@@ -2,10 +2,6 @@ package Practice;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 class Result {
 
@@ -56,9 +52,9 @@ public class Solution {
 
        // miniMaxSum(list1);
        // System.out.println(Result.diagonalDifference(arr));
-        System.out.println(birthdayCakeCandles(list1));
+       // System.out.println(birthdayCakeCandles(list1));
 
-        System.out.println(timeConversion("07:05:45PM"));
+        System.out.println(timeConversion("05:05:45PM"));
     }
 
 
@@ -93,8 +89,23 @@ public class Solution {
 
     public static String timeConversion(String s) {
         // Write your code here
-
-
+        String hr=s.substring(0,2);
+        String t=s.substring(s.length()-2);
+        String withoutT = s.substring(0, s.indexOf(t));
+        if(t.equals("AM")){
+            if(Integer.parseInt(hr)==12){
+              s=  withoutT.replace(hr,"00");
+            }else{
+                return withoutT;
+            }
+        }
+        else if(t.equals("PM")){
+            if(Integer.parseInt(hr)==12){
+                return withoutT;
+            }else{
+                s=withoutT.replace(hr,String.valueOf(Integer.parseInt(hr)+12));
+            }
+        }
 
         return s;
     }
