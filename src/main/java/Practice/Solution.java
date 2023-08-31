@@ -57,6 +57,8 @@ public class Solution {
        // miniMaxSum(list1);
        // System.out.println(Result.diagonalDifference(arr));
         System.out.println(birthdayCakeCandles(list1));
+
+        System.out.println(timeConversion("07:05:45PM"));
     }
 
 
@@ -87,5 +89,13 @@ public class Solution {
             }
         }
         return tallCandles.size();
+    }
+
+    public static String timeConversion(String s) {
+        // Write your code here
+
+
+
+        return s;
     }
 }
